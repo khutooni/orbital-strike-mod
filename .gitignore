@@ -1,0 +1,32 @@
+# gradle
+build/
+.gradle/
+
+# eclipse
+*.launch
+.project
+.classpath
+.c9/
+*.c9search/*
+.settings/
+*.sublime-workspace
+
+# vscode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/
+
+# idea
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# macos
+*.DS_Store
+
+# fabric
+run/

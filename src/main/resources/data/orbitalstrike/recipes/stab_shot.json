@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "TST",
+    "SFS",
+    "TST"
+  ],
+  "key": {
+    "T": { "item": "minecraft:tnt" },
+    "S": { "item": "minecraft:stone" },
+    "F": { "item": "minecraft:fishing_rod" }
+  },
+  "result": { "item": "orbitalstrike:stab_shot", "count": 1 }
+}

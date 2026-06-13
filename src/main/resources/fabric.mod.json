@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "id": "orbitalstrike",
+  "version": "${version}",
+  "name": "Orbital Strike Cannon",
+  "description": "Adds Nuke Shot and Stab Shot orbital cannon items.",
+  "authors": ["khutooni"],
+  "contact": {},
+  "license": "MIT",
+  "environment": "*",
+  "entrypoints": {
+    "main": ["com.example.orbitalstrike.OrbitalStrikeMod"]
+  },
+  "mixins": [],
+  "depends": {
+    "fabricloader": ">=0.15.0",
+    "fabric": "*",
+    "minecraft": "1.26.1"
+  }
+}

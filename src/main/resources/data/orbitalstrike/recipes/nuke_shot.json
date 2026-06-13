@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "TTT",
+    "TFT",
+    "TTT"
+  ],
+  "key": {
+    "T": { "item": "minecraft:tnt" },
+    "F": { "item": "minecraft:fishing_rod" }
+  },
+  "result": { "item": "orbitalstrike:nuke_shot", "count": 1 }
+}

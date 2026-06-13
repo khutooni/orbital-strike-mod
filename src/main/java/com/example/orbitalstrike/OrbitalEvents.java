@@ -7,6 +7,7 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 public class OrbitalEvents {
@@ -32,8 +33,32 @@ public class OrbitalEvents {
         });
     }
 
+    private static BlockPos getTargetBlock(ServerPlayerEntity player) {
+        // Get where the player is looking (up to 100 blocks away)
+        Vec3d start = player.getEyePos();
+        Vec3d direction = player.getRotationVector();
+        Vec3d end = start.add(direction.x * 100, direction.y * 100, direction.z * 100);
+        
+        // Cast a ray from player's eyes in the direction they're looking
+        var hitResult = player.getWorld().raycast(new net.minecraft.world.RaycastContext(
+            start,
+            end,
+            net.minecraft.world.RaycastContext.ShapeType.OUTLINE,
+            net.minecraft.world.RaycastContext.FluidHandling.NONE,
+            player
+        ));
+        
+        // If we hit something, use that position; otherwise use where they're looking far away
+        if (hitResult.getType() != net.minecraft.util.hit.HitResult.Type.MISS) {
+            return hitResult.getBlockPos();
+        } else {
+            // Default to 100 blocks in the direction they're looking
+            return new BlockPos((int)end.x, (int)end.y, (int)end.z);
+        }
+    }
+
     private static void triggerNukeShot(World world, ServerPlayerEntity player) {
-        BlockPos target = player.getBlockPos();
+        BlockPos target = getTargetBlock(player);
         world.getServer().execute(() -> {
             try { Thread.sleep(2000); } catch (InterruptedException ignored) {}
 
@@ -53,7 +78,7 @@ public class OrbitalEvents {
     }
 
     private static void triggerStabShot(World world, ServerPlayerEntity player) {
-        BlockPos target = player.getBlockPos();
+        BlockPos target = getTargetBlock(player);
         world.getServer().execute(() -> {
             try { Thread.sleep(2000); } catch (InterruptedException ignored) {}
 
